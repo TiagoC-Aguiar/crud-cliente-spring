@@ -1,11 +1,15 @@
 package br.com.springcliente.model;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Cliente extends AbstractEntity {
 
+	@Size(min = 3, max = 100)
 	private String nome;
+	
 	private String cpf;
 	private int cep;
 	private String logradouro;
@@ -23,7 +27,7 @@ public class Cliente extends AbstractEntity {
 	}
 
 	public String getCpf() {
-		return cpf;
+		return formataCpf();
 	}
 
 	public void setCpf(String cpf) {
@@ -76,6 +80,20 @@ public class Cliente extends AbstractEntity {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
-	}
+	}	
+	
+	private String formataCpf() {
+		String saida = "";
+		for(int i =0;i<this.cpf.length();i++) {
+			if(i == 3 || i == 7) {
+				saida += ".";
+			}
+			if(i == 10) {
+				saida += "-";
+			}
+			saida += this.cpf.charAt(i);
+		}
+		return saida;
+	}	
 
 }

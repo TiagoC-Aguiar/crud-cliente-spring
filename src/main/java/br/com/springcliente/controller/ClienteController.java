@@ -46,13 +46,15 @@ public class ClienteController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody Cliente Cliente) {
-		return new ResponseEntity<>(clienteDAO.save(Cliente), HttpStatus.OK);
+	public ResponseEntity<?> cadastrar(@Valid @RequestBody Cliente cliente) {
+		cliente.setCpf(this.removeCaracterCpf(cliente));
+		return new ResponseEntity<>(clienteDAO.save(cliente), HttpStatus.OK);
 	}
 	
 	@PutMapping(path = "/{id}")
-	public ResponseEntity<?> alterar(@RequestBody Cliente Cliente) {
-		return new ResponseEntity<>(clienteDAO.save(Cliente), HttpStatus.OK);
+	public ResponseEntity<?> alterar(@RequestBody Cliente cliente) {
+		cliente.setCpf(this.removeCaracterCpf(cliente));
+		return new ResponseEntity<>(clienteDAO.save(cliente), HttpStatus.OK);
 	}
 	
 	@DeleteMapping(path = "/{id}")
@@ -60,4 +62,16 @@ public class ClienteController {
 		clienteDAO.deleteById(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
+	
+	private String removeCaracterCpf(Cliente c) {
+		String saida = "";
+		for(int i =0;i<c.getCpf().length();i++) {
+			if(c.getCpf().charAt(i) >= 48 && c.getCpf().charAt(i) <= 57) {
+				saida += c.getCpf().charAt(i);
+			}			
+		}
+		return saida;
+	}
+	
+	
 }

@@ -13,6 +13,7 @@ public class Email extends AbstractEntity {
 	@JoinColumn(name = "id_cliente")
 	private Cliente cliente;
 
+	@javax.validation.constraints.Email
 	public String getEmail() {
 		return email;
 	}
