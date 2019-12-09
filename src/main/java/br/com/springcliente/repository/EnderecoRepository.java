@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 
 import br.com.springcliente.model.Endereco;
 
-public interface EnderecoRepository extends JpaRepositoryImplementation<Endereco, Long> {
+public interface EnderecoRepository { //extends JpaRepositoryImplementation<Endereco, Long> {
 
 }
