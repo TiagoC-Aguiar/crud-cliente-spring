@@ -7,7 +7,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>br.com.springcliente</groupId>
-	<artifactId>sprint-cliente</artifactId>
+	<artifactId>spring-cliente</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	
 	<properties>
