@@ -3,4 +3,4 @@ target/**
 .classpath
 .project
 .idea
-sprint-cliente.iml
+spring-cliente.iml

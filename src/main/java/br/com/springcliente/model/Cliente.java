@@ -1,21 +1,61 @@
 package br.com.springcliente.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Cliente extends AbstractEntity {
 
+	@NotNull
+	@NotEmpty(message = "O campo 'nome' não pode ficar em branco")
+	@Column(name = "nome", length = 100)
 	@Size(min = 3, max = 100)
 	private String nome;
-	
+
+	@NotNull
+	@NotEmpty(message = "O campo 'cpf' não pode ficar em branco")
+	@Column(name = "cpf", length = 11)
+	@Size(min = 11, max = 11)
 	private String cpf;
+
+	@NotNull
+	@NotEmpty(message = "O campo 'cep' não pode ficar em branco")
+	@Column(name = "cep", length = 8)
+	@Size(min = 8, max = 8)
 	private int cep;
+
+	@NotNull
+	@NotEmpty(message = "O campo 'logradouro' não pode ficar em branco")
+	@Column(name = "logradouro", length = 100)
+	@Size(min = 8, max = 100)
 	private String logradouro;
+
+	@NotNull
+	@NotEmpty(message = "O campo 'bairro' não pode ficar em branco")
+	@Column(name = "bairro", length = 100)
+	@Size(min = 8, max = 100)
 	private String bairro;
+
+	@NotNull
+	@NotEmpty(message = "O campo 'cidade' não pode ficar em branco")
+	@Column(name = "cidade", length = 100)
+	@Size(min = 8, max = 100)
 	private String cidade;
+
+	@NotNull
+	@NotEmpty(message = "O campo 'UF' não pode ficar em branco")
+	@Column(name = "uf", length = 100)
+	@Size(min = 8, max = 100)
 	private String uf;
+
+	@Column(name = "complemento", length = 100)
+	@Size(min = 8, max = 100)
 	private String complemento;
 
 	public String getNome() {
