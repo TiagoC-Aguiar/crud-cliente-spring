@@ -1,12 +1,11 @@
 package br.com.springcliente.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.validation.constraints.Min;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -27,36 +26,38 @@ public class Cliente extends AbstractEntity {
 	@NotNull
 	@NotEmpty(message = "O campo 'cep' não pode ficar em branco")
 	@Column(name = "cep", length = 8)
-	@Size(min = 8, max = 8)
-	private int cep;
+	@Size(min = 5, max = 8)
+	private String cep;
 
 	@NotNull
 	@NotEmpty(message = "O campo 'logradouro' não pode ficar em branco")
 	@Column(name = "logradouro", length = 100)
-	@Size(min = 8, max = 100)
+	@Size(min = 6, max = 100)
 	private String logradouro;
 
 	@NotNull
 	@NotEmpty(message = "O campo 'bairro' não pode ficar em branco")
 	@Column(name = "bairro", length = 100)
-	@Size(min = 8, max = 100)
+	@Size(min = 4, max = 100)
 	private String bairro;
 
 	@NotNull
 	@NotEmpty(message = "O campo 'cidade' não pode ficar em branco")
 	@Column(name = "cidade", length = 100)
-	@Size(min = 8, max = 100)
+	@Size(min = 6, max = 100)
 	private String cidade;
 
 	@NotNull
 	@NotEmpty(message = "O campo 'UF' não pode ficar em branco")
-	@Column(name = "uf", length = 100)
-	@Size(min = 8, max = 100)
+	@Column(name = "uf", length = 2)
+	@Size(min = 2, max = 2)
 	private String uf;
 
 	@Column(name = "complemento", length = 100)
-	@Size(min = 8, max = 100)
 	private String complemento;
+
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	private List<EmailEntity> emails;
 
 	public String getNome() {
 		return nome;
@@ -74,11 +75,11 @@ public class Cliente extends AbstractEntity {
 		this.cpf = cpf;
 	}
 
-	public int getCep() {
+	public String getCep() {
 		return cep;
 	}
 
-	public void setCep(int cep) {
+	public void setCep(String cep) {
 		this.cep = cep;
 	}
 
@@ -120,8 +121,16 @@ public class Cliente extends AbstractEntity {
 
 	public void setComplemento(String complemento) {
 		this.complemento = complemento;
-	}	
-	
+	}
+
+	public List<EmailEntity> getEmails() {
+		return emails;
+	}
+
+	public void setEmails(List<EmailEntity> emailEntities) {
+		this.emails = emailEntities;
+	}
+
 	private String formataCpf() {
 		String saida = "";
 		for(int i =0;i<this.cpf.length();i++) {

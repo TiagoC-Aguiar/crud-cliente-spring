@@ -2,8 +2,10 @@ package br.com.springcliente.repository;
 
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
-import br.com.springcliente.model.Email;
+import br.com.springcliente.model.EmailEntity;
 
-public interface EmailRepository extends JpaRepositoryImplementation<Email, Long> {
+import java.util.List;
+
+public interface EmailRepository extends JpaRepositoryImplementation<EmailEntity, Long> {
 
 }

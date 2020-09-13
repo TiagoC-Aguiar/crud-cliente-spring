@@ -34,6 +34,7 @@ public class DataLoader {
                 perfilService.save(perfil);
                 System.out.println("Perfil USER criado...");
             }
+            System.out.println("Config data OK...");
         });
     }
 }
