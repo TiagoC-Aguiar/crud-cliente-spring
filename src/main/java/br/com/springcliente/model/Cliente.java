@@ -2,7 +2,10 @@ package br.com.springcliente.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -59,6 +62,9 @@ public class Cliente extends AbstractEntity {
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<EmailEntity> emails;
 
+	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
+	private List<Telefone> telefones;
+
 	public String getNome() {
 		return nome;
 	}
@@ -68,7 +74,7 @@ public class Cliente extends AbstractEntity {
 	}
 
 	public String getCpf() {
-		return formataCpf();
+		return cpf;
 	}
 
 	public void setCpf(String cpf) {
@@ -127,8 +133,16 @@ public class Cliente extends AbstractEntity {
 		return emails;
 	}
 
-	public void setEmails(List<EmailEntity> emailEntities) {
-		this.emails = emailEntities;
+	public void setEmails(List<EmailEntity> emails) {
+		this.emails = emails;
+	}
+
+	public List<Telefone> getTelefones() {
+		return telefones;
+	}
+
+	public void setTelefones(List<Telefone> telefones) {
+		this.telefones = telefones;
 	}
 
 	private String formataCpf() {

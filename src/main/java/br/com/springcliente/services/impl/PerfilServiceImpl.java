@@ -9,11 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class RoleServiceImpl implements PerfilService {
+public class PerfilServiceImpl implements PerfilService {
 
     private final PerfilRepository repository;
 
-    public RoleServiceImpl(PerfilRepository repository) {
+    public PerfilServiceImpl(PerfilRepository repository) {
         this.repository = repository;
     }
 

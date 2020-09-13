@@ -1,6 +1,7 @@
 package br.com.springcliente.model;
 
-import br.com.springcliente.enums.TipoTelefoneNome;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -13,15 +14,17 @@ public class Telefone extends AbstractEntity {
 	@NotNull
 	@NotEmpty(message = "O campo 'número' não pode ficar em branco")
 	@Column(name = "numero", length = 9)
-	@Size(min = 8, max = 9)
+	@Size(min = 8, max = 11)
 	private String numero;
 
-	@NotNull
-	@Column(name = "tipo_telefone")
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_tipo_telefone")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private TipoTelefone tipoTelefone;
 	
-	@ManyToOne
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_cliente")
+	@JsonIgnore
 	private Cliente cliente;
 
 	public String getNumero() {

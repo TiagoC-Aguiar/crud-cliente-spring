@@ -2,11 +2,9 @@ package br.com.springcliente.model;
 
 import br.com.springcliente.enums.TipoTelefoneNome;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Entity(name = "tipo_telefone")
 public class TipoTelefone extends AbstractEntity {
@@ -15,6 +13,9 @@ public class TipoTelefone extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_telefone")
     private TipoTelefoneNome descricao;
+
+    @OneToMany(mappedBy = "tipoTelefone", fetch = FetchType.LAZY)
+    private List<Telefone> telefones;
 
     public TipoTelefoneNome getDescricao() {
         return descricao;

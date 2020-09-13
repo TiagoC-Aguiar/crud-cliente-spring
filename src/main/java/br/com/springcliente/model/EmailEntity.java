@@ -23,10 +23,6 @@ public class EmailEntity extends AbstractEntity {
 	@JsonIgnore
 	private Cliente cliente;
 
-//	public EmailEntity() {
-//		this.cliente = new Cliente();
-//	}
-
 	public String getEmail() {
 		return email;
 	}
