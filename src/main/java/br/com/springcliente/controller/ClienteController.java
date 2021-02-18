@@ -14,7 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -43,7 +43,7 @@ public class ClienteController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody Cliente cliente) {
+	public ResponseEntity<?> cadastrar(@RequestBody Cliente cliente) {
 		Cliente savedCliente = service.save(cliente);
 		for(EmailEntity email : savedCliente.getEmails()) {
 			email.setCliente(cliente);

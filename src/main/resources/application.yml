@@ -14,6 +14,6 @@ spring:
   jmx:
     enabled: false
   datasource:
-    url: jdbc:mysql://localhost:3306/banco_cliente?allowPublicKeyRetrieval=true&sslMode=DISABLED
+    url: jdbc:mysql://localhost:3307/crud_cliente?allowPublicKeyRetrieval=true&sslMode=DISABLED
     username: root
     password: password
