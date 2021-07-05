@@ -2,8 +2,10 @@ package br.com.springcliente.loader;
 
 import br.com.springcliente.enums.RoleName;
 import br.com.springcliente.enums.TipoTelefoneNome;
+import br.com.springcliente.model.Cliente;
 import br.com.springcliente.model.Perfil;
 import br.com.springcliente.model.TipoTelefone;
+import br.com.springcliente.services.ClienteService;
 import br.com.springcliente.services.PerfilService;
 import br.com.springcliente.services.TipoTelefoneService;
 import org.springframework.boot.CommandLineRunner;
@@ -15,10 +17,12 @@ public class DataLoader {
 
     private final PerfilService perfilService;
     private final TipoTelefoneService tipoTelefoneService;
+    private final ClienteService clienteService;
 
-    public DataLoader(PerfilService perfilService, TipoTelefoneService tipoTelefoneService) {
+    public DataLoader(PerfilService perfilService, TipoTelefoneService tipoTelefoneService, ClienteService clienteService) {
         this.perfilService = perfilService;
         this.tipoTelefoneService = tipoTelefoneService;
+        this.clienteService = clienteService;
     }
 
     @Bean
@@ -59,6 +63,15 @@ public class DataLoader {
                 tipo.setDescricao(TipoTelefoneNome.RESIDENCIAL);
                 tipoTelefoneService.save(tipo);
                 System.out.println("Tipo de telefone RESIDENCIAL criado...");
+            }
+            if(!clienteService.findByNome("Joaozinho").isPresent()) {
+            	System.out.println("Criando cliente joãozinho...");
+            	Cliente cliente = new Cliente();
+            	cliente.setNome("Joaozinho");
+            	cliente.setCpf("00000000000");
+            	cliente.setCep("72146018");
+            	clienteService.save(cliente);
+            	System.out.println("Criado cliente joãozinho...");
             }
             System.out.println("Config data OK...");
         });

@@ -3,13 +3,13 @@ package br.com.springcliente.model;
 import br.com.springcliente.enums.RoleName;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
 public class Perfil extends AbstractEntity {
 
-    @NotNull
+//    @NotNull
     @Enumerated(EnumType.STRING)
     private RoleName nome;
 

@@ -3,6 +3,9 @@ package br.com.springcliente.services.impl;
 import br.com.springcliente.model.Cliente;
 import br.com.springcliente.repository.ClienteRepository;
 import br.com.springcliente.services.ClienteService;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 @Service
@@ -29,6 +32,11 @@ public class ClienteServiceImpl implements ClienteService {
         }
         return null;
     }
+    
+    @Override
+    public Optional<Cliente> findByNome(String nome) {    
+    	return repository.findByNome(nome);
+    }    
 
     @Override
     public Cliente save(Cliente cliente) {
@@ -39,4 +47,5 @@ public class ClienteServiceImpl implements ClienteService {
     public void deleteById(Long id) {
         repository.deleteById(id);
     }
+
 }

@@ -4,17 +4,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+//import javax.validation.constraints.NotEmpty;
+//import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Size;
 
 @Entity
 public class Telefone extends AbstractEntity {
 
-	@NotNull
-	@NotEmpty(message = "O campo 'número' não pode ficar em branco")
+//	@NotNull
+//	@NotEmpty(message = "O campo 'número' não pode ficar em branco")
+//	@Size(min = 8, max = 11)
 	@Column(name = "numero", length = 9)
-	@Size(min = 8, max = 11)
 	private String numero;
 
 	@ManyToOne(optional = false, fetch = FetchType.LAZY)
