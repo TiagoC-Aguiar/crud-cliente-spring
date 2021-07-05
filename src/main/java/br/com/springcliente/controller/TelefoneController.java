@@ -1,6 +1,6 @@
 package br.com.springcliente.controller;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +39,7 @@ public class TelefoneController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody Telefone telefone) {
+	public ResponseEntity<?> cadastrar(@RequestBody Telefone telefone) {
 		return new ResponseEntity<>(telefoneDAO.save(telefone), HttpStatus.OK);
 	}
 	

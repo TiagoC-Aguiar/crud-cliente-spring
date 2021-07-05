@@ -1,6 +1,6 @@
 package br.com.springcliente.controller;
 
-import javax.validation.Valid;
+//import javax.validation.Valid;
 
 import br.com.springcliente.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,7 +45,7 @@ public class EmailController {
 	}
 	
 	@PostMapping
-	public ResponseEntity<?> cadastrar(@Valid @RequestBody EmailEntity emailEntity) {
+	public ResponseEntity<?> cadastrar(@RequestBody EmailEntity emailEntity) {
 		return new ResponseEntity<>(service.save(emailEntity), HttpStatus.OK);
 	}
 	
