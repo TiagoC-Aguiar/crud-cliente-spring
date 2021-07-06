@@ -1,6 +1,5 @@
 package br.com.springcliente.services;
 
-import br.com.springcliente.enums.TipoTelefone;
 import br.com.springcliente.enums.TipoTelefoneDesc;
 
 import java.util.Optional;

@@ -42,22 +42,22 @@ public class ClienteController {
 		return new ResponseEntity<>(clienteDAO.findById(id).get(), HttpStatus.OK);
 	}
 
-	@PostMapping
-	public ResponseEntity<?> cadastrar(@RequestBody Cliente cliente) {
-		Cliente savedCliente = service.save(cliente);
-		for(EmailEntity email : savedCliente.getEmails()) {
-			email.setCliente(cliente);
-			emailService.save(email);
-		}
-		for(Telefone telefone : savedCliente.getTelefones()) {
-			System.out.println("Cadastrar cliente - tipo telefone: " + telefone.getTipoTelefone().getDescricao());
-			telefone.setCliente(cliente);
-			telefoneService.save(telefone);
-		}
-		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-				.buildAndExpand(savedCliente.getId()).toUri();
-		return ResponseEntity.created(location).body(savedCliente);
-	}
+//	@PostMapping
+//	public ResponseEntity<?> cadastrar(@RequestBody Cliente cliente) {
+//		Cliente savedCliente = service.save(cliente);
+//		for(EmailEntity email : savedCliente.getEmails()) {
+//			email.setCliente(cliente);
+//			emailService.save(email);
+//		}
+//		for(Telefone telefone : savedCliente.getTelefones()) {
+//			System.out.println("Cadastrar cliente - tipo telefone: " + telefone.getTipoTelefone().getDescricao());
+//			telefone.setCliente(cliente);
+//			telefoneService.save(telefone);
+//		}
+//		URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+//				.buildAndExpand(savedCliente.getId()).toUri();
+//		return ResponseEntity.created(location).body(savedCliente);
+//	}
 
 	@PutMapping(path = "/{id}")
 	public ResponseEntity<?> alterar(@RequestBody Cliente cliente) {
