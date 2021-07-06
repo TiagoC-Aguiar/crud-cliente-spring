@@ -1,27 +1,24 @@
 package br.com.springcliente.model;
 
-import br.com.springcliente.enums.TipoTelefoneNome;
+import br.com.springcliente.enums.TipoTelefoneDesc;
+import com.sun.istack.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
-//import javax.validation.constraints.NotNull;
-import java.util.List;
 
 @Entity(name = "tipo_telefone")
-public class TipoTelefone extends AbstractEntity {
+@Getter
+@Setter
+public class TipoTelefone implements AbstractEntity {
 
-//    @NotNull
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_telefone")
-    private TipoTelefoneNome descricao;
+    private TipoTelefoneDesc descricao;
 
-    @OneToMany(mappedBy = "tipoTelefone", fetch = FetchType.LAZY)
-    private List<Telefone> telefones;
-
-    public TipoTelefoneNome getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(TipoTelefoneNome descricao) {
-        this.descricao = descricao;
-    }
 }

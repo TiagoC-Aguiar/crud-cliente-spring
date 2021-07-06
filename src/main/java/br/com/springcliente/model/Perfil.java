@@ -1,13 +1,21 @@
 package br.com.springcliente.model;
 
 import br.com.springcliente.enums.RoleName;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 //import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
-public class Perfil extends AbstractEntity {
+@Getter
+@Setter
+public class Perfil implements AbstractEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
 //    @NotNull
     @Enumerated(EnumType.STRING)

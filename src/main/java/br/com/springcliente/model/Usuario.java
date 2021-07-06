@@ -1,10 +1,19 @@
 package br.com.springcliente.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Usuario extends AbstractEntity {
+@Getter
+@Setter
+public class Usuario implements AbstractEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	private String nome;
 	private String login;
@@ -18,35 +27,4 @@ public class Usuario extends AbstractEntity {
 				inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
 	private List<Perfil> perfils;
 
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	public List<Perfil> getPerfils() {
-		return perfils;
-	}
-
-	public void setPerfils(List<Perfil> perfils) {
-		this.perfils = perfils;
-	}
 }

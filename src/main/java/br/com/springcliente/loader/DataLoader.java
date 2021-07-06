@@ -1,10 +1,9 @@
 package br.com.springcliente.loader;
 
 import br.com.springcliente.enums.RoleName;
-import br.com.springcliente.enums.TipoTelefoneNome;
+import br.com.springcliente.enums.TipoTelefoneDesc;
 import br.com.springcliente.model.Cliente;
 import br.com.springcliente.model.Perfil;
-import br.com.springcliente.model.TipoTelefone;
 import br.com.springcliente.services.ClienteService;
 import br.com.springcliente.services.PerfilService;
 import br.com.springcliente.services.TipoTelefoneService;
@@ -43,24 +42,24 @@ public class DataLoader {
                 perfilService.save(perfil);
                 System.out.println("Perfil USER criado...");
             }
-            if(!tipoTelefoneService.findByDescricao(TipoTelefoneNome.CELULAR).isPresent()) {
+            if(!tipoTelefoneService.findByDescricao(TipoTelefoneDesc.CELULAR).isPresent()) {
                 System.out.println("Criando tipo de telefone CELULAR...");
-                TipoTelefone tipo = new TipoTelefone();
-                tipo.setDescricao(TipoTelefoneNome.CELULAR);
+                br.com.springcliente.model.TipoTelefone tipo = new br.com.springcliente.model.TipoTelefone();
+                tipo.setDescricao(TipoTelefoneDesc.CELULAR);
                 tipoTelefoneService.save(tipo);
                 System.out.println("Tipo de telefone CELULAR criado...");
             }
-            if(!tipoTelefoneService.findByDescricao(TipoTelefoneNome.COMERCIAL).isPresent()) {
+            if(!tipoTelefoneService.findByDescricao(TipoTelefoneDesc.COMERCIAL).isPresent()) {
                 System.out.println("Criando tipo de telefone COMERCIAL...");
-                TipoTelefone tipo = new TipoTelefone();
-                tipo.setDescricao(TipoTelefoneNome.COMERCIAL);
+                br.com.springcliente.model.TipoTelefone tipo = new br.com.springcliente.model.TipoTelefone();
+                tipo.setDescricao(TipoTelefoneDesc.COMERCIAL);
                 tipoTelefoneService.save(tipo);
                 System.out.println("Tipo de telefone COMERCIAL criado...");
             }
-            if(!tipoTelefoneService.findByDescricao(TipoTelefoneNome.RESIDENCIAL).isPresent()) {
+            if(!tipoTelefoneService.findByDescricao(TipoTelefoneDesc.RESIDENCIAL).isPresent()) {
                 System.out.println("Criando tipo de telefone RESIDENCIAL...");
-                TipoTelefone tipo = new TipoTelefone();
-                tipo.setDescricao(TipoTelefoneNome.RESIDENCIAL);
+                br.com.springcliente.model.TipoTelefone tipo = new br.com.springcliente.model.TipoTelefone();
+                tipo.setDescricao(TipoTelefoneDesc.RESIDENCIAL);
                 tipoTelefoneService.save(tipo);
                 System.out.println("Tipo de telefone RESIDENCIAL criado...");
             }
