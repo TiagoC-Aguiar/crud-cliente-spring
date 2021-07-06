@@ -5,6 +5,8 @@ import br.com.springcliente.repository.EmailRepository;
 import br.com.springcliente.services.EmailService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class EmailServiceImpl implements EmailService {
     private final EmailRepository repository;
@@ -21,5 +23,10 @@ public class EmailServiceImpl implements EmailService {
     @Override
     public EmailEntity save(EmailEntity email) {
         return repository.save(email);
+    }
+
+    @Override
+    public Optional<EmailEntity> findByEmail(String email) {
+        return repository.findByEmail(email);
     }
 }

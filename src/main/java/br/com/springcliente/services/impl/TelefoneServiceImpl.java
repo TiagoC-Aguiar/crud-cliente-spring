@@ -7,6 +7,8 @@ import br.com.springcliente.services.TelefoneService;
 import br.com.springcliente.services.TipoTelefoneService;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class TelefoneServiceImpl implements TelefoneService {
     private final TelefoneRepository repository;
@@ -23,5 +25,10 @@ public class TelefoneServiceImpl implements TelefoneService {
         TipoTelefone tipo = tipoTelefoneService.findByDescricao(telefone.getTipoTelefone().getDescricao()).get();
         telefone.setTipoTelefone(tipo);
         return repository.save(telefone);
+    }
+
+    @Override
+    public Optional<Telefone> findByNumero(String numero) {
+        return repository.findByNumero(numero);
     }
 }
