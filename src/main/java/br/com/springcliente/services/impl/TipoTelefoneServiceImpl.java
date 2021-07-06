@@ -1,7 +1,7 @@
 package br.com.springcliente.services.impl;
 
-import br.com.springcliente.enums.TipoTelefoneNome;
-import br.com.springcliente.model.TipoTelefone;
+import br.com.springcliente.enums.TipoTelefone;
+import br.com.springcliente.enums.TipoTelefoneDesc;
 import br.com.springcliente.repository.TipoTelefoneRepository;
 import br.com.springcliente.services.TipoTelefoneService;
 import org.springframework.stereotype.Service;
@@ -17,12 +17,12 @@ public class TipoTelefoneServiceImpl implements TipoTelefoneService {
     }
 
     @Override
-    public Optional<TipoTelefone> findByDescricao(TipoTelefoneNome descricao) {
+    public Optional<br.com.springcliente.model.TipoTelefone> findByDescricao(TipoTelefoneDesc descricao) {
         return repository.findByDescricao(descricao);
     }
 
     @Override
-    public TipoTelefone save(TipoTelefone tipoTelefone) {
+    public br.com.springcliente.model.TipoTelefone save(br.com.springcliente.model.TipoTelefone tipoTelefone) {
         return repository.save(tipoTelefone);
     }
 }

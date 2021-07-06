@@ -1,18 +1,23 @@
 package br.com.springcliente.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 //import javax.validation.constraints.NotEmpty;
 //import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
-public class Cliente extends AbstractEntity {
+@Getter
+@Setter
+public class Cliente implements AbstractEntity {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 //	@NotNull
 //	@NotEmpty(message = "O campo 'nome' não pode ficar em branco")
@@ -64,86 +69,6 @@ public class Cliente extends AbstractEntity {
 
 	@OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY)
 	private List<Telefone> telefones;
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-
-	public String getCep() {
-		return cep;
-	}
-
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-
-	public String getLogradouro() {
-		return logradouro;
-	}
-
-	public void setLogradouro(String logradouro) {
-		this.logradouro = logradouro;
-	}
-
-	public String getBairro() {
-		return bairro;
-	}
-
-	public void setBairro(String bairro) {
-		this.bairro = bairro;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public String getUf() {
-		return uf;
-	}
-
-	public void setUf(String uf) {
-		this.uf = uf;
-	}
-
-	public String getComplemento() {
-		return complemento;
-	}
-
-	public void setComplemento(String complemento) {
-		this.complemento = complemento;
-	}
-
-	public List<EmailEntity> getEmails() {
-		return emails;
-	}
-
-	public void setEmails(List<EmailEntity> emails) {
-		this.emails = emails;
-	}
-
-	public List<Telefone> getTelefones() {
-		return telefones;
-	}
-
-	public void setTelefones(List<Telefone> telefones) {
-		this.telefones = telefones;
-	}
 
 	private String formataCpf() {
 		String saida = "";

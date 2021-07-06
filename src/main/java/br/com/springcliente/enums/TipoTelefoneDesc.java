@@ -1,5 +1,5 @@
 package br.com.springcliente.enums;
 
-public enum TipoTelefoneNome {
+public enum TipoTelefoneDesc {
     RESIDENCIAL, COMERCIAL, CELULAR
 }
