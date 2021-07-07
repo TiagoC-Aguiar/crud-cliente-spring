@@ -1,10 +1,7 @@
 package br.com.springcliente.loader;
 
 import br.com.springcliente.enums.TipoTelefoneDesc;
-import br.com.springcliente.model.Cliente;
-import br.com.springcliente.model.EmailEntity;
-import br.com.springcliente.model.Telefone;
-import br.com.springcliente.model.TipoTelefone;
+import br.com.springcliente.model.*;
 import br.com.springcliente.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -18,17 +15,29 @@ public class DataLoader {
     private final ClienteService clienteService;
     private final TelefoneService telefoneService;
     private final EmailService emailService;
+    private final UFService ufService;
+    private final CidadeService cidadeService;
+    private final BairroService bairroService;
     private Cliente cliente;
+    private UF uf;
+    private Cidade cidade;
 
     public DataLoader(PerfilService perfilService, TipoTelefoneService tipoTelefoneService,
-                      ClienteService clienteService, TelefoneService telefoneService, EmailService emailService) {
+                      ClienteService clienteService, TelefoneService telefoneService, EmailService emailService,
+                      UFService ufService, CidadeService cidadeService, BairroService bairroService) {
         this.perfilService = perfilService;
         this.tipoTelefoneService = tipoTelefoneService;
         this.clienteService = clienteService;
         this.telefoneService = telefoneService;
         this.emailService = emailService;
+        this.ufService = ufService;
+        this.cidadeService = cidadeService;
+        this.bairroService = bairroService;
 
         this.cliente = new Cliente();
+        this.uf = new UF();
+        this.cidade = new Cidade();
+
     }
 
     @Bean
@@ -72,7 +81,6 @@ public class DataLoader {
             }
             if(!clienteService.findByNome("Joaozinho").isPresent()) {
             	System.out.println("Criando cliente joãozinho...");
-//            	this.cliente = new Cliente();
             	cliente.setNome("Joaozinho");
             	cliente.setCpf("00000000001");
             	clienteService.save(cliente);
@@ -94,6 +102,28 @@ public class DataLoader {
                 email.setCliente(cliente);
                 emailService.save(email);
                 System.out.println("Criando email do joãozinho");
+            }
+            if(!ufService.findBySigla("DF").isPresent()) {
+                System.out.println("Criando estado Distrito Federal...");
+                uf.setSigla("DF");
+                uf.setNome("Distrito Federal");
+                ufService.save(uf);
+                System.out.println("Estado Distrito Federal criado");
+            }
+            if(!cidadeService.findByNome("Ceilondres").isPresent()) {
+                System.out.println("Criando cidade Ceilondres...");
+                cidade.setNome("CeiLondres");
+                cidade.setUf(uf);
+                cidadeService.save(cidade);
+                System.out.println("Cidade Ceilondres criada");
+            }
+            if(!bairroService.findByNome("P Morte").isPresent()) {
+                System.out.println("Criando bairro 'P' Morte...");
+                Bairro bairro = new Bairro();
+                bairro.setNome("P Morte");
+                bairro.setCidade(cidade);
+                bairroService.save(bairro);
+                System.out.println("Bairro 'P' Morte criado");
             }
             System.out.println("Config data OK...");
         });
