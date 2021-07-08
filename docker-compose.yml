@@ -1,6 +1,6 @@
 version: '3'
-services: 
-  db:
+services:
+  mysqldb:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
     restart: always
@@ -11,6 +11,23 @@ services:
       MYSQL_DATABASE: crud_cliente
     volumes:
       - crud_cliente_project_avaliacao:/var/lib/mysql
+    networks:
+      - crud-cliente-spring
+
+#  backend:
+#    build: .
+#    image: tiagocaguiar/crud-cliente-backend
+#    ports:
+#      - 8081:8080
+#    volumes:
+#      - ./:/app
+#    depends_on:
+#      - mysqldb
+#    networks:
+#      - crud-cliente-spring
 
 volumes:
   crud_cliente_project_avaliacao:
+
+networks:
+  crud-cliente-spring:
