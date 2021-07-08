@@ -1,14 +1,7 @@
-FROM openjdk:11-jdk
+FROM openjdk:8-jdk
 
-WORKDIR /app
+ARG JAR_FILE=target/*.jar
 
-COPY mvnw .
-COPY .mvn .mvn
+COPY ${JAR_FILE} app.jar
 
-COPY pom.xml .
-
-COPY src src
-
-RUN ./mvnw clean install
-
-ENTRYPOINT ["./mvnw","spring-boot:run"]
+ENTRYPOINT ["java", "-jar","app.jar"]
