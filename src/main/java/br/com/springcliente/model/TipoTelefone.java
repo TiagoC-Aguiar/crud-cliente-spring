@@ -16,7 +16,7 @@ public class TipoTelefone implements AbstractEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+//    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo_telefone")
     private TipoTelefoneDesc descricao;
